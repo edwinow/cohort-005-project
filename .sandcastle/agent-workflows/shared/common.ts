@@ -21,9 +21,9 @@ export const writeJson = (filename: string, value: unknown): void => {
   );
 };
 
-// The one agent every factory workflow runs. It authenticates with a Claude
-// subscription. To bill the API instead, pass ANTHROPIC_API_KEY here and in
-// the workflow's env in place of CLAUDE_CODE_OAUTH_TOKEN.
+// The agent every factory workflow runs reads ANTHROPIC_API_KEY.
+// For Claude subscription authentication, replace it here and in each
+// workflow env with CLAUDE_CODE_OAUTH_TOKEN.
 //
 // Sandcastle runs every agent with its permission checks skipped, so it can
 // use any tool. Claude Code also accepts `permissionMode: "auto"` here for
@@ -31,6 +31,6 @@ export const writeJson = (filename: string, value: unknown): void => {
 export const claudeAgent = () =>
   sandcastle.claudeCode("claude-opus-5-5", {
     env: {
-      CLAUDE_CODE_OAUTH_TOKEN: required("CLAUDE_CODE_OAUTH_TOKEN"),
+      ANTHROPIC_API_KEY: required("ANTHROPIC_API_KEY"),
     },
   });

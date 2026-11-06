@@ -27,6 +27,10 @@ This course is written for Opus-level models. Budget for it:
 - **The factory runs Opus on your subscription.** The GitHub Actions workflows run Claude Code with a token generated from your own Claude subscription.
 - **Not using Claude?** Codex, OpenCode, Pi and other agents can't use a ChatGPT-style login inside CI. To run the factory with them, you'll need a provider API key, billed per token. GitHub Copilot is the exception: it runs on a Copilot plan, with a fine-grained personal access token that has the "Copilot Requests" permission, saved as the `COPILOT_GITHUB_TOKEN` secret. Its model is `claude-opus-5.5`, which needs Copilot Pro+, Max, Business or Enterprise; on another plan, pick a model your plan includes, such as `claude-sonnet-4.5`.
 
+### This fork’s factory authentication
+
+The factory workflows in this fork use `ANTHROPIC_API_KEY`, billed through the Anthropic API. Set it as a repository secret alongside the repository-scoped `FACTORY_PAT`. The subscription setup described above is the upstream course default; switching back requires replacing the API-key variable in the workflows and their shared agent configuration with `CLAUDE_CODE_OAUTH_TOKEN`.
+
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) v22+ (ships with npm v10+). This repo uses **npm**, not pnpm.
